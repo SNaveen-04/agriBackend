@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.agri.backend.Exceptions.ProductException;
 import com.agri.backend.entity.Cart;
 import com.agri.backend.entity.CartItem;
 import com.agri.backend.service.CartService;
@@ -26,6 +27,20 @@ public class CartController {
         }
     }
     
+    @DeleteMapping("/{cartId}")
+    public ResponseEntity<?> deleteCartItem(@PathVariable long cartId, @RequestParam long itemId) {
+        try {
+            Cart cart = cartService.deleteItem(cartId, itemId);
+            return ResponseEntity.ok(cart);
+        } catch (ProductException e) {
+            // If custom exception is thrown with specific status
+            return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+        } catch (Exception e) {
+            // Fallback for any unexpected exceptions
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred");
+        }
+    }
+
     // Create Cart for a user
 //    @PostMapping("/create/{userId}")
 //    public ResponseEntity<?> createCart(@PathVariable long userId) {

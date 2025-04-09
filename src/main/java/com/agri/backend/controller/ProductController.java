@@ -27,8 +27,6 @@ public class ProductController {
             return ResponseEntity.status(e.getStatus()).body(e.getMessage());
         }
     }
-    
-    
 
     @GetMapping("")
     public ResponseEntity<?> getAllProducts() {
@@ -74,6 +72,16 @@ public class ProductController {
     public ResponseEntity<?> getProductsByCategoryId(@PathVariable Long categoryId) {
         try {
             List<Product> products = productService.getProductsByCategoryId(categoryId);
+            return ResponseEntity.ok(products);
+        } catch (ProductException e) {
+            return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+        }
+    }
+    
+    @GetMapping("offers")
+    public ResponseEntity<?> getProductOffers() {
+        try {
+            List<Product> products = productService.getProductOffers();
             return ResponseEntity.ok(products);
         } catch (ProductException e) {
             return ResponseEntity.status(e.getStatus()).body(e.getMessage());

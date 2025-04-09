@@ -10,6 +10,7 @@ public class DTOMapper {
 		userDto.setNumber(user.getNumber());
 		userDto.setUserName(user.getUserName());
 		userDto.setUserType(user.getUserType());
+		userDto.setAddresses(user.getAddresses());
 		return userDto;
 	}
 }

@@ -1,5 +1,6 @@
 package com.agri.backend.DTO;
 
+import java.util.List;
 
 public class UserDTO {
     private long id;
@@ -7,6 +8,7 @@ public class UserDTO {
     private String email;
     private String number;
     private String userType;
+    private List<String> addresses;
 
     public long getId() {
         return id;
@@ -38,5 +40,12 @@ public class UserDTO {
     public void setUserType(String userType) {
         this.userType = userType;
     }
+	public List<String> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(List<String> addresses) {
+		this.addresses = addresses;
+	}
+    
     
 }

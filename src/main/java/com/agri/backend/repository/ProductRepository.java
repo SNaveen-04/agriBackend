@@ -10,4 +10,5 @@ import com.agri.backend.entity.Product;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByUserId(Long userId);
     List<Product> findByCategoryId(Long categoryId);
+    List<Product> findByDiscountGreaterThan(float discount);
 }

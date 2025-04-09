@@ -33,6 +33,16 @@ public class UserController {
     	}
     }
 
+    @GetMapping("{id}/address")
+    public ResponseEntity<?> getAddress(@PathVariable long id) {
+        try {
+            UserDTO user = userService.getUserById(id);
+            return ResponseEntity.ok(user.getAddresses());
+        } catch (UserException e) {
+            return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+        }
+    }
+    
     @PostMapping("")
     public ResponseEntity<?> createUser(@RequestBody User user) {
         try {

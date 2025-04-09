@@ -1,5 +1,7 @@
 package com.agri.backend.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,7 +19,14 @@ public class User {
 	private String password;
 	@Column(nullable = false)
 	private String userType;
-	
+	private List<String> addresses;
+	public List<String> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<String> addresses) {
+		this.addresses = addresses;
+	}
 
 	public long getId() {
 		return Id;

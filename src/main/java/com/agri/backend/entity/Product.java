@@ -7,23 +7,24 @@ import lombok.Data;
 @Table(name = "Product_Table")
 @Data
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;  
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long id;
 
-    private long userId;
-    private String name;
-    private double price;
-    private float discount;
-    private float offerPrice;
-    private String priceType;
-    private int noOfReviews;
-    private float rating;
-    private float availableQuantity;
-    private String img;
-    private String description;
-    private String category;
-    private long categoryId;
+	private long userId;
+	private String userName;
+	private String name;
+	private double price;
+	private float discount;
+	private float offerPrice;
+	private String priceType;
+	private int noOfReviews;
+	private float rating;
+	private float availableQuantity;
+	private String img;
+	private String description;
+	private String category;
+	private long categoryId;
 
 	public long getId() {
 		return id;
@@ -39,6 +40,14 @@ public class Product {
 
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+		
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getName() {
@@ -136,7 +145,9 @@ public class Product {
 	public void setCategoryId(long categoryId) {
 		this.categoryId = categoryId;
 	}
-    
+
 	
-    
+	
+	
+
 }
