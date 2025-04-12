@@ -16,44 +16,62 @@ public class Cart {
     private long id;
 
     private long userId;
-    
-    private double totalPrice;
+
+    private double originalPrice;
+
+    private double discountedPrice;
+
+    private double finalTotalPrice;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<CartItem> cartItems;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public long getUserId() {
-		return userId;
-	}
+    public long getUserId() {
+        return userId;
+    }
 
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
-	public double getTotalPrice() {
-		return totalPrice;
-	}
+    public double getOriginalPrice() {
+        return originalPrice;
+    }
 
-	public void setTotalPrice(double d) {
-		this.totalPrice = d;
-	}
+    public void setOriginalPrice(double originalPrice) {
+        this.originalPrice = originalPrice;
+    }
 
-	public List<CartItem> getCartItems() {
-		return cartItems;
-	}
+    public double getDiscountedPrice() {
+        return discountedPrice;
+    }
 
-	public void setCartItems(List<CartItem> cartItems) {
-		this.cartItems = cartItems;
-	}
-    
-    
+    public void setDiscountedPrice(double discountedPrice) {
+        this.discountedPrice = discountedPrice;
+    }
+
+    public double getFinalTotalPrice() {
+        return finalTotalPrice;
+    }
+
+    public void setFinalTotalPrice(double finalTotalPrice) {
+        this.finalTotalPrice = finalTotalPrice;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
 }

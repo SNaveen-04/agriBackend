@@ -26,33 +26,29 @@ public class CartController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-    
+
     @DeleteMapping("/{cartId}")
     public ResponseEntity<?> deleteCartItem(@PathVariable long cartId, @RequestParam long itemId) {
         try {
             Cart cart = cartService.deleteItem(cartId, itemId);
             return ResponseEntity.ok(cart);
         } catch (ProductException e) {
-            // If custom exception is thrown with specific status
             return ResponseEntity.status(e.getStatus()).body(e.getMessage());
         } catch (Exception e) {
-            // Fallback for any unexpected exceptions
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred");
         }
     }
 
-    // Create Cart for a user
-//    @PostMapping("/create/{userId}")
-//    public ResponseEntity<?> createCart(@PathVariable long userId) {
-//        try {
-//            Cart createdCart = cartService.createCart(userId);
-//            return ResponseEntity.status(HttpStatus.CREATED).body(createdCart);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-//        }
-//    }
+    @PostMapping("/create/{userId}")
+    public ResponseEntity<?> createCart(@PathVariable long userId) {
+        try {
+            Cart createdCart = cartService.createCart(userId);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdCart);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 
-    // Add a CartItem to a Cart
     @PostMapping("/{cartId}/add-item")
     public ResponseEntity<?> addCartItemToCart(@PathVariable long cartId, @RequestBody CartItem cartItem) {
         try {
@@ -63,7 +59,6 @@ public class CartController {
         }
     }
 
-    // Update CartItem (quantity, etc.)
     @PutMapping("/{cartId}/update-item/{cartItemId}")
     public ResponseEntity<?> updateCartItem(@PathVariable long cartId, @PathVariable long cartItemId, @RequestParam int quantity) {
         try {
