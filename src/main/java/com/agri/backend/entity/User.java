@@ -1,15 +1,18 @@
 package com.agri.backend.entity;
 
 import java.util.List;
+import java.util.Map;
+
+import com.agri.backend.entity.OrderItem.OrderItemStatus;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 
 @Entity
 @Table(name = "User_Table")
 @Data
 public class User {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long Id;
@@ -19,6 +22,8 @@ public class User {
 	private String password;
 	@Column(nullable = false)
 	private String userType;
+	@ElementCollection
+	private Map<Long,OrderItemStatus> orderItems;
 	private List<String> addresses;
 	public List<String> getAddresses() {
 		return addresses;
@@ -75,5 +80,15 @@ public class User {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+
+	public Map<Long, OrderItemStatus> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(Map<Long, OrderItemStatus> orderItems) {
+		this.orderItems = orderItems;
+	}
+	
+	
 
 }

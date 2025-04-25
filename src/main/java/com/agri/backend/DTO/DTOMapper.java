@@ -11,6 +11,7 @@ public class DTOMapper {
 		userDto.setUserName(user.getUserName());
 		userDto.setUserType(user.getUserType());
 		userDto.setAddresses(user.getAddresses());
+		userDto.setOrderItems(user.getOrderItems());
 		return userDto;
 	}
 }

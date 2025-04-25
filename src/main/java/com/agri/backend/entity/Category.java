@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Uses database auto-increment
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) // Uses database auto-increment
     private Long id;
 
     @Column(nullable = false, unique = true)

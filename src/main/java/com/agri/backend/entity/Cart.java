@@ -1,10 +1,12 @@
 package com.agri.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
 
 @Entity
 @Table(name = "Cart_Table")
@@ -12,20 +14,13 @@ import java.util.List;
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long userId;
-
     private double originalPrice;
-
     private double discountedPrice;
-
     private double finalTotalPrice;
-
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<CartItem> cartItems;
+    @ElementCollection
+    private List<CartItem> items = new ArrayList<CartItem>();
 
     public long getId() {
         return id;
@@ -33,14 +28,6 @@ public class Cart {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
 
     public double getOriginalPrice() {
@@ -67,11 +54,37 @@ public class Cart {
         this.finalTotalPrice = finalTotalPrice;
     }
 
-    public List<CartItem> getCartItems() {
-        return cartItems;
-    }
+	public List<CartItem> getItems() {
+		return items;
+	}
 
-    public void setCartItems(List<CartItem> cartItems) {
-        this.cartItems = cartItems;
-    }
+	public void setItems(List<CartItem> items) {
+		this.items = items;
+	}
+	
+	public void addItem(CartItem item) {
+		this.items.add(item);
+	}
+
+	public void removeItem(long id) {
+		this.items = this.items.stream().filter((item) -> item.getId() != id).collect(Collectors.toList());
+	}
+	
+	public void updateItem(CartItem item) {
+		this.items = this.items.stream().map((temp) -> {
+			if(item.getId() == temp.getId()) {
+				temp.setQuantity(item.getQuantity());
+				temp.setTotalPrice(item.getTotalPrice());
+			}
+			return temp;
+		}).collect(Collectors.toList());
+	}
+	
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", originalPrice=" + originalPrice + ", discountedPrice=" + discountedPrice
+				+ ", finalTotalPrice=" + finalTotalPrice + ", items=" + items + "]";
+	}
+
+	
 }

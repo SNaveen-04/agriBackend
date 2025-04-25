@@ -1,12 +1,10 @@
 package com.agri.backend.DTO;
 
 import java.time.LocalDateTime;
-import com.agri.backend.entity.Cart;
 
 public class OrderDTO {
     private long id;
     private UserDTO user;
-    private Cart cart;
     private LocalDateTime orderTimestamp;
     private String status;
 
@@ -22,13 +20,6 @@ public class OrderDTO {
     public void setUser(UserDTO user) {
         this.user = user;
     }
-    
-    public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
 	public LocalDateTime getOrderTimestamp() {
         return orderTimestamp;
     }
@@ -41,4 +32,5 @@ public class OrderDTO {
     public void setStatus(String status) {
         this.status = status;
     }
+    
 }

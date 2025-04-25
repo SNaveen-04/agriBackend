@@ -1,6 +1,9 @@
 package com.agri.backend.DTO;
 
 import java.util.List;
+import java.util.Map;
+
+import com.agri.backend.entity.OrderItem.OrderItemStatus;
 
 public class UserDTO {
     private long id;
@@ -9,7 +12,7 @@ public class UserDTO {
     private String number;
     private String userType;
     private List<String> addresses;
-
+    private Map<Long,OrderItemStatus> orderItems;
     public long getId() {
         return id;
     }
@@ -46,6 +49,12 @@ public class UserDTO {
 	public void setAddresses(List<String> addresses) {
 		this.addresses = addresses;
 	}
-    
-    
+	public Map<Long, OrderItemStatus> getOrderItems() {
+		return orderItems;
+	}
+	public void setOrderItems(Map<Long, OrderItemStatus> orderItems) {
+		this.orderItems = orderItems;
+	}
+	
+	
 }

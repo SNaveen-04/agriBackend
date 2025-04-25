@@ -1,46 +1,34 @@
 package com.agri.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "Cart_Item_Table")
-@Data
 public class CartItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
-    @JsonBackReference
-    private Cart cart;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
-
-    private int quantity;
-    private double totalPrice;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long id;
+	
+	private long productId;
+	private int quantity;
+	private double totalPrice;
+	private long cartId;
+	private long farmerId;
+	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Cart getCart() {
-		return cart;
+	public long getProductId() {
+		return productId;
 	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductId(long productId) {
+		this.productId = productId;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -54,6 +42,17 @@ public class CartItem {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-    
-    
+	public long getCartId() {
+		return cartId;
+	}
+	public void setCartId(long cartId) {
+		this.cartId = cartId;
+	}
+	public long getFarmerId() {
+		return farmerId;
+	}
+	public void setFarmerId(long farmerId) {
+		this.farmerId = farmerId;
+	}
+	
 }

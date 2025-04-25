@@ -6,5 +6,4 @@ import com.agri.backend.entity.Cart;
 
 @Repository
 public interface CartRepo extends JpaRepository<Cart, Long> {
-    Cart findByUserId(long userId);
 }
